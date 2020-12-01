@@ -1,0 +1,55 @@
+{
+  "dictionary":
+  {
+    "menu": {
+      "title" : "Time manager",
+      "home" : "Dashboard",
+      "about" : "About",
+      "settings": "Settings",
+      "login": "login",
+      "logout": "logout",
+      "darkMode": "Dark mode"
+    },
+    "login": {
+      "title" : "Hello there, welcome back",
+      "email": "E-mail",
+      "password": "Password",
+      "actionBtn": "Sign In",
+      "signup" : ["New here?", "Sign Up instead"],
+      "changePwd": "Forgot your password?"
+    },
+    "signup": {
+      "title" : "Get on Board",
+      "name": "Name",
+      "email": "E-mail",
+      "password": "Password",
+      "confPassword": "Confirm password",
+      "actionBtn": "Sign Up",
+      "signin" : "I am already a member",
+      "policy": ["By creating an account you are agree to the","Free Membership","and","Privacy Policy"]
+    },
+    "forgotPassword" : {
+      "title": [["Step 1",  "enter your e-mail"],["Step 2",  "We sent a code to your e-mail"],["Step 3",  "Enter new password"]],
+      "email": "E-mail",
+      "code": "Code",
+      "password": "New password",
+      "confPassword": "Confirm new password",
+      "actionBtn": ["Next step", "Next step", "Change"],
+      "signin" : "Back to the login form"
+    },
+    "home": {
+      "title": ["Good morning", "Good afternoon", "Good evening"],
+      "month": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+      "weeks": ["Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    },
+    "errors": {
+      "undefined" : "Undefined error",
+      "emptyField" : "The field can't be empty",
+      "emailFail"  : "Email isn't correct",
+      "pwdNotMatch": "Password field doesn't match"
+    },
+    "footer" : {
+      "copyright": ["made with", "by", "for a better web"]
+    }
+  }
+}

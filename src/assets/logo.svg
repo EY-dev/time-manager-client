@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="logo.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 512 512.00003"
+   height="512"
+   width="512">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     inkscape:window-maximized="0"
+     inkscape:window-y="0"
+     inkscape:window-x="234"
+     inkscape:window-height="1041"
+     inkscape:window-width="1513"
+     units="px"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     inkscape:cy="243.30792"
+     inkscape:cx="85.108183"
+     inkscape:zoom="0.7"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <g
+     id="layer1">
+    <path
+       d="m 241.85068,50 a 204.64072,200.39139 0 0 0 -78.2531,20.532289 l 12.81803,21.74364 a 179.06063,175.34247 0 0 1 65.43507,-17.170253 z m 25.58009,0 V 75.105676 A 179.06063,175.34247 0 0 1 318.531,86.199608 L 329.36457,63.446184 A 204.64072,200.39139 0 0 0 267.43077,50 Z M 141.44283,83.056751 A 204.64072,200.39139 0 0 0 94.673229,125.02544 l 21.001651,14.40117 a 179.06063,175.34247 0 0 1 38.58797,-34.62622 z M 80.000649,145.54403 a 204.64072,200.39139 0 0 0 -24.275105,57.39138 l 25.248348,4.3601 A 179.06063,175.34247 0 0 1 101.0023,159.9452 Z M 51.283001,227.60469 A 204.64072,200.39139 0 0 0 50,249.99999 a 204.64072,200.39139 0 0 0 4.048849,39.66537 l 24.764724,-6.49706 a 179.06063,175.34247 0 0 1 -3.233483,-33.16831 179.06063,175.34247 0 0 1 0.95126,-18.03522 z m 34.151419,79.75929 -24.764725,6.49707 a 204.64072,200.39139 0 0 0 29.293201,55.09981 L 109.60161,352.82387 A 179.06063,175.34247 0 0 1 85.43442,307.36398 Z m 308.17214,53.2094 a 179.06063,175.34247 0 0 1 -38.58797,34.62623 l 12.81803,21.74167 a 204.64072,200.39139 0 0 0 46.7696,-41.96868 z M 126.04481,372.0137 106.4061,388.15068 a 204.64072,200.39139 0 0 0 50.32683,37.81605 l 10.83556,-22.75343 a 179.06063,175.34247 0 0 1 -41.52368,-31.1996 z m 206.82103,35.71037 a 179.06063,175.34247 0 0 1 -65.43507,17.17025 v 25.10372 a 204.64072,200.39139 0 0 0 78.25309,-20.5323 z m -142.11539,6.07633 -10.83357,22.75342 A 204.64072,200.39139 0 0 0 241.85068,450 V 424.89432 A 179.06063,175.34247 0 0 1 190.75045,413.8004 Z"
+       style="fill:#22264c;fill-opacity:1;stroke-width:1.3943;stroke-opacity:0"
+       id="path833" />
+    <ellipse
+       ry="25.048923"
+       rx="25.58009"
+       cy="249.99998"
+       cx="254.64072"
+       id="path840"
+       style="fill:#22264c;fill-opacity:1;stroke-width:0.716255;stroke-opacity:0" />
+    <path
+       sodipodi:nodetypes="cccccc"
+       d="m 246.96669,139.78474 h 15.34806 v 138.4743 l -7.23551,21.8388 -8.11255,-21.8388 z"
+       style="fill:#22264c;fill-opacity:1;stroke-width:1.80119;stroke-opacity:0"
+       id="rect842" />
+    <path
+       inkscape:transform-center-x="3.333255e-06"
+       transform="matrix(1.0232036,0,0,1.0019569,50,50)"
+       inkscape:randomized="0"
+       inkscape:rounded="0"
+       inkscape:flatsided="false"
+       sodipodi:type="star"
+       inkscape:transform-center-y="12.103695"
+       sodipodi:sides="3"
+       sodipodi:cy="73.35051"
+       d="M 390.92904,32.439331 370.00576,85.430568 349.08248,138.42181 313.65236,93.806099 278.22224,49.190393 334.57564,40.814862 Z"
+       sodipodi:arg2="0.37605372"
+       sodipodi:arg1="-0.67114384"
+       sodipodi:r2="32.893032"
+       sodipodi:r1="65.786064"
+       sodipodi:cx="339.41125"
+       id="path991"
+       style="fill:#9d2eb7;fill-opacity:1;stroke-width:1.5;stroke-opacity:0" />
+  </g>
+  <metadata
+     id="metadata993">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
