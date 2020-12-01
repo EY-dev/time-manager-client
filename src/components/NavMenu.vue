@@ -88,8 +88,6 @@ export default {
         });
         this.getTheme();
         this.onResize();
-        console.log(this.$store.getters.isAuth)
-        console.log(this.$store.getters.getUser)
     }
 }
 </script>
