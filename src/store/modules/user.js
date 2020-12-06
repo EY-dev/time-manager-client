@@ -57,7 +57,6 @@ export default {
         },
         addNewUser: (state, data) => {
             const url = 'https://service.ey-dev.com/time-manager/user/'
-            console.log(data)
             return fetchAPIPost(url,{name: data.name, 'email': data.email, 'pwd': data.pwd})
                 .then(user => {
                     if ('error' in user) {
