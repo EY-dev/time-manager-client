@@ -100,16 +100,50 @@ export default {
             })
             this.errors = {name: '', email:'', pwd: '', confPwd: ''};
         },
+        clearSucceed(){
+            const fields = document.querySelectorAll('.field');
+            this.succeed.password = '';
+            this.succeed.email = '';
+            this.succeed.name = '';
+            this.succeed.confPwd = '';
+            fields.forEach(field => {
+                field.classList.remove('field-succeed')
+            })
+            this.errors = {email:'', password: '', name:'', confPwd:''}
+        },
         async sendData() {
+            this.clearSucceed()
+            this.clearError()
             if (this.validate()) {
                 document.querySelector(".signup-form").classList.add("blur-10");
                 await delay(250);
                 this.isLoading = true;
-                await delay(1000);//get result
-                document.querySelector(".loading").classList.add("blur-10");
-                await delay(250);
-                this.isLoading = false;
-                document.querySelector(".signup-form").classList.remove("blur-10");
+                await this.fetchData();
+            }
+        },
+
+        async fetchData(){
+            await delay(1000);
+            let request = false
+            let errorMsg = ''
+            let that = this
+            console.log(this.form)
+            this.$store.dispatch('addNewUser', {name: this.form.name, 'email' : this.form.email, 'pwd' : this.form.pwd})
+                .then(()=>{request = true})
+                .catch((error)=> {
+                    errorMsg = error.message;
+                    request = false
+                })
+                .finally(() => {that.decoration(request, errorMsg)})
+
+        },
+
+        async decoration(isSucceed, errorMsg){
+            await delay(250);
+            this.isLoading = false;
+            document.querySelector(".signup-form").classList.remove("blur-10");
+            await delay(500);
+            if (isSucceed) {
                 await delay(500);
                 this.setSucceed('name', 'OK');
                 await delay(250);
@@ -119,10 +153,29 @@ export default {
                 await delay(250);
                 this.setSucceed('confirm-password', 'OK');
                 await delay(1000);
-                this.$store.dispatch('setUser', this.form);
                 this.$router.push('/home').catch(e => {console.log(e)})
             }
+            else{
+                if (errorMsg === 'email exist'){
+                    await delay(500);
+                    this.setSucceed('name', 'OK');
+                    this.setError(this.$store.getters.getDictionary.errors.emailExist, "email");
+                    await delay(250);
+                }
+                else{
+                    console.log(isSucceed, errorMsg)
+                    this.setError(this.$store.getters.getDictionary.errors.undefined, 'name');
+                    await delay(250);
+                    this.setError(this.$store.getters.getDictionary.errors.undefined, "email");
+                    await delay(250);
+                    this.setError(this.$store.getters.getDictionary.errors.undefined, "password");
+                    await delay(250);
+                    this.setError(this.$store.getters.getDictionary.errors.undefined, "confirm-password");
+                    await delay(250);
+                }
+            }
         },
+
         validate(){
             let status = true
             if (!this.validName()){status = false}

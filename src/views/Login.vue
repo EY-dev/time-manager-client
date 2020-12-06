@@ -16,7 +16,7 @@
             </div>
             <div class="action-box">
                 <div class="field login-link">
-                    <router-link to="/forgot-password" class="to-forgot-password"> {{ $store.getters.getDictionary.login.changepassword }} </router-link>
+                    <router-link to="/forgot-password" class="to-forgot-password"> {{ $store.getters.getDictionary.login.changePwd }} </router-link>
                 </div>
                 <v-btn class="action-btn" rounded @click="sendData"> {{ $store.getters.getDictionary.login.actionBtn }} </v-btn>
                 <div class="field login-link">
@@ -123,7 +123,7 @@ export default {
                 else if (errorMsg === 'wrong password'){
                     this.setSucceed('email', 'OK');
                     await delay(250);
-                    this.setError(this.$store.getters.getDictionary.errors.passwordNotMatch, "password");
+                    this.setError(this.$store.getters.getDictionary.errors.pwdNotMatch, "password");
                     await delay(250);
                 }
                 else{

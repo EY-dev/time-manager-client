@@ -1,5 +1,5 @@
 
-function fetchAPI(url, data){
+function fetchAPIPost(url, data){
     return  fetch(url, {
         method: 'POST', // or 'PUT'
         mode: 'cors', // no-cors, *cors, same-origin
@@ -11,6 +11,7 @@ function fetchAPI(url, data){
     })
         .then(response => response.json()).catch((error)=>{console.log(error.message)})
 }
+
 export default {
     state: {
         user: null
@@ -46,25 +47,49 @@ export default {
         },
         auth: (state, data) => {
             const url = 'https://service.ey-dev.com/time-manager/auth/'
-            return fetchAPI(url,{"user": {'email': data.email, 'pwd': data.pwd}})
+            return fetchAPIPost(url,{'email': data.email, 'pwd': data.pwd})
                 .then(user => {
                     if ('error' in user) {
                         throw new Error(user['error']);
                     }
                     state.commit('SET_USER', user);
-                    state.commit('SET_USER_LOCAL', user);
-                    state.commit('SET_USER_REMOTE', user);
+                })
+        },
+        addNewUser: (state, data) => {
+            const url = 'https://service.ey-dev.com/time-manager/user/'
+            console.log(data)
+            return fetchAPIPost(url,{name: data.name, 'email': data.email, 'pwd': data.pwd})
+                .then(user => {
+                    if ('error' in user) {
+                        throw new Error(user['error']);
+                    }
+                    state.commit('SET_USER', user);
                 })
         },
         logout: state => {
-            state.commit('SET_USER', null)
-        }
+            const url = 'https://service.ey-dev.com/time-manager/logout/'
+            return fetchAPIPost(url,{'method':'logout'})
+                .then(user => {
+                    if ('error' in user) {
+                        throw new Error(user['error']);
+                    }
+                    else{
+                        state.commit('SET_USER', null)
+                    }
+                })
+        },
     },
     getters:{
         getUser: state => {
             return state.user;
         },
         isAuth: state => {
+            if (localStorage.getItem("user_name") !== null){
+                state.user = {
+                    name: localStorage.getItem("user_name"),
+                    email:localStorage.getItem("user_email")
+                }
+            }
             return state.user !== null
         }
     },
