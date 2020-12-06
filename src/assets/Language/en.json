@@ -46,6 +46,7 @@
       "undefined" : "Undefined error",
       "emptyField" : "The field can't be empty",
       "emailFail"  : "Email isn't correct",
+      "emailExist" : "Email already exist",
       "pwdNotMatch": "Password field doesn't match"
     },
     "footer" : {
