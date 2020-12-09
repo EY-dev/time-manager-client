@@ -1,7 +1,7 @@
 <template>
     <div class="days-selector" v-if="isReady">
         <div class="days">
-            <day-card v-for="(day, index) in days" :key="index" :day="day" :id="getId(day)" @new-day="newDay" />
+            <day-card v-for="(day, index) in days" :key="index" :day="day" :id="getId(day)"/>
         </div>
     </div>
 </template>
@@ -44,9 +44,6 @@ export default {
                 day.setDate(day.getDate()+1);
             }
         },
-        newDay(day){
-            this.$emit('new-day', day)
-        }
     },
     created() {
         this.totalDays = this.getTotalDays();

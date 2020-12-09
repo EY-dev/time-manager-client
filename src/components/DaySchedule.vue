@@ -37,6 +37,7 @@ export default {
     name: "DaySchedule",
     props: ['day'],
     data:()=>({
+        date: null,
         activeDay: null,
         input: "",
         events: [],
@@ -154,6 +155,9 @@ export default {
     mounted() {
         this.autoRefresh();
         this.timer = setInterval(this.autoRefresh, 180000);
+    },
+    created(){
+        this.date = this.$store.getters.getCurrentDay
     },
     beforeDestroy () {
         clearInterval(this.timer)

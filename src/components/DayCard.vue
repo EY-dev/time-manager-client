@@ -6,6 +6,11 @@
 </template>
 
 <script>
+
+function dateToStr(date){
+    return date.year + '-' + (date.month + 1) + '-' + date.date + ' '
+}
+
 export default {
     name: "DayCard",
     props: ["day"],
@@ -15,7 +20,9 @@ export default {
     }),
     methods:{
         newDate(){
-            this.$emit('new-day', this.date)
+            const id = this.$store.getters.getUser.id
+            this.$store.dispatch('setCurrentDay', id+ '/' + dateToStr(this.date))
+            this.$store.dispatch('setEvents', id+ '/' + dateToStr(this.date))
         }
     },
     mounted() {
@@ -27,7 +34,7 @@ export default {
             elems.forEach(elem => {
                 elem.scrollIntoView({inline: "center"});
             })
-            this.$emit('new-day', this.date)
+            this.newDate()
         }
     },
     created() {

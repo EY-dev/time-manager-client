@@ -7,7 +7,7 @@
                   hide-details
                   @change="changeMonth"
         ></v-select>
-        <days-selector @new-month="newCardActive" @new-day="newDay"/>
+        <days-selector @new-month="newCardActive"/>
     </div>
 </template>
 
