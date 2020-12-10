@@ -7,7 +7,7 @@ export default {
     },
     mutations : {
         SET_CURRENT_DAY : (state, day) => {
-            state.currentDay = new Date(day)
+            state.currentDay = day
         }
     },
     actions: {

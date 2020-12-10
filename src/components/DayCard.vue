@@ -8,7 +8,10 @@
 <script>
 
 function dateToStr(date){
-    return date.year + '-' + (date.month + 1) + '-' + date.date + ' '
+    let full_date =  date.year + '-'
+    full_date += (date.month + 1 < 10) ? '0' + (date.month + 1) + '-' : (date.month + 1) + '-'
+    full_date += (date.date < 10) ? '0' + (date.date) : (date.date)
+    return full_date
 }
 
 export default {
@@ -20,9 +23,17 @@ export default {
     }),
     methods:{
         newDate(){
-            const id = this.$store.getters.getUser.id
-            this.$store.dispatch('setCurrentDay', id+ '/' + dateToStr(this.date))
-            this.$store.dispatch('setEvents', id+ '/' + dateToStr(this.date))
+            let id = 0
+            try {
+                id = parseInt(this.$store.getters.getUser.id)
+            }
+            catch (error){
+                this.$router.push('/login')
+            }
+            if (id > 0){
+                this.$store.dispatch('setCurrentDay', dateToStr(this.date))
+                this.$store.dispatch('setEvents', dateToStr(this.date))
+            }
         }
     },
     mounted() {

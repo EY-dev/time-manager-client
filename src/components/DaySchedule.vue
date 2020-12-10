@@ -16,13 +16,13 @@
                             v-for="event in timeline"
                             :key="event.id"
                             class="mb-4"
-                            :class="event.class"
+                            :class="getClass(event)"
                             color="var(--link)"
                             small
                         >
                             <v-row justify="space-between">
-                                <v-col cols="7" v-text="event.text" class="text-left event"></v-col>
-                                <v-col class="text-right time-event" cols="5" v-text="event.time"></v-col>
+                                <v-col cols="7" v-text="event.title" class="text-left event"></v-col>
+                                <v-col class="text-right time-event" cols="5" v-text="timeToString(event['time_from'])+'-'+timeToString(event['time_to'])"></v-col>
                             </v-row>
                         </v-timeline-item>
                     </v-slide-x-transition>
@@ -33,93 +33,48 @@
 </template>
 
 <script>
+
 export default {
     name: "DaySchedule",
     props: ['day'],
     data:()=>({
-        date: null,
-        activeDay: null,
-        input: "",
-        events: [],
-        isPast: false,
-        isNow: false,
-        isFuture: false,
         activities: [
-            {time: '7:30', text : 'Morning jogging'},
-            {time: '8:00', text : 'Shower'},
-            {time: '8:30', text : 'Breakfast'},
-            {time: '9:00', text : "Project's work"},
-            {time: '12:00', text : "Lunch"},
-            {time: '12:30', text : "Project's work"},
-            {time: '15:00', text : "Gym"},
-            {time: '17:00', text : "Dinner"},
-            {time: '17:30', text : "Project's work"},
-            {time: '20:00', text : "Relax"},
-            {time: '23:00', text : "Sleep"},
+            {time: '7:30', title : 'Morning jogging'},
+            {time: '8:00', title : 'Shower'},
+            {time: '8:30', title : 'Breakfast'},
+            {time: '9:00', title : "Project's work"},
+            {time: '12:00', title : "Lunch"},
+            {time: '12:30', title : "Project's work"},
+            {time: '15:00', title : "Gym"},
+            {time: '17:00', title : "Dinner"},
+            {time: '17:30', title : "Project's work"},
+            {time: '20:00', title : "Relax"},
+            {time: '23:00', title : "Sleep"},
         ],
         timer: ''
     }),
     methods:{
-        newMainFocus(){},
-        positionOnTimeLine(time){
-            let currentHour = new Date().getHours();
-            let currentMinutes = new Date().getMinutes();
-            let temp = time.split(':');
-            if (currentHour > parseInt(temp[0])){
-                return -1;
+        timeToString(time){
+            time = time.split(':')
+            return time[0] + ':' + time[1]
+        },
+        getClass(event){
+            if (event['is_complete'] === 1){
+                return {'past' : true}
             }
-            if (currentHour < parseInt(temp[0])){
-                return 1;
-            }
-            if (currentHour === parseInt(temp[0])){
-                if (temp[1] === "00"){
-                    if (currentMinutes < 30){return 0;}
-                    else{return -1;}
+            else{
+                const now = new Date()
+                if (now < new Date(event['date'] + ' ' + event['time_to']) && now > new Date(event['date'] + ' ' + event['time_from'])){
+                    return {'now' : true}
                 }
-                if (temp[1] === "30"){
-                    if (currentMinutes >= 30){return 0;}
-                    else{return 1;}
-                }
-            }
-        },
-        setEvent(text, time){
-            let event = {};
-            const temp = this.positionOnTimeLine(time);
-            if (temp < 0){event.class = {'past' : true}}
-            if (temp === 0){event.class = {'now' : true}}
-            if (temp > 0){event.class = {'future' : true}}
-            event.id = this.day + time;
-            event.time = time;
-            event.text = text;
-            return event;
-        },
-        getTimeLineTime(){
-            let result = {};
-            let time = ""
-            for (let i = 0; i < 24; i++){
-                time = i + ":00";
-                result = this.activities.filter(activity => activity.time === time);
-                if (result.length > 0){this.events.push(this.setEvent(result[0].text, result[0].time));}
-                time = i + ":30";
-                result = this.activities.filter(activity => activity.time === time)
-                if (result.length > 0){this.events.push(this.setEvent(result[0].text, result[0].time));}
-            }
-        },
-        setTimeLineClasses(){
-            let now = document.querySelector('.now');
-            if (now === null){
-                let points = document.querySelectorAll(".past");
-                if (points !== null){
-                    points[points.length - 1].classList.remove('past');
-                    points[points.length - 1].classList.add('now');
+                else{
+                    return {'future' : true}
                 }
             }
         },
         autoRefresh(){
-            this.events = [];
-            this.getTimeLineTime();
+            this.timeline
             setTimeout(()=>{
-                this.setTimeLineClasses();
                 document.querySelectorAll('.now').forEach(box => {box.scrollIntoView({behavior: "smooth", block: "center"})})
             },500);
         },
@@ -149,15 +104,18 @@ export default {
     },
     computed: {
         timeline () {
-            return this.events;
+            return this.$store.getters.getEvents[this.currentDay];
         },
+        currentDay(){
+            return this.$store.getters.getCurrentDay
+        }
     },
     mounted() {
         this.autoRefresh();
-        this.timer = setInterval(this.autoRefresh, 180000);
+        this.timer = setInterval(this.autoRefresh, 1000);
+        //this.timer = setInterval(this.autoRefresh, 180000);
     },
     created(){
-        this.date = this.$store.getters.getCurrentDay
     },
     beforeDestroy () {
         clearInterval(this.timer)

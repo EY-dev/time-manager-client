@@ -1,29 +1,32 @@
 import {FETCH_API_GET, FETCH_API_POST} from "@/plugins/fetchAPI"
-
 export default {
     state: {
-        events : []
+        events : {},
     },
     mutations : {
         SET_EVENTS: (state, date) => {
-            if (!state.events.includes(date)){
-                const url = 'events/';
-                FETCH_API_GET(url + date).then(events => {
-                    if ('error' in events) {
-                        throw new Error(events['error']);
-                    }
-                    if (state.events.length === 0){
-                        if (Array.isArray(events)) state.events = events
-                    }
-                    else{
-                        events.forEach(element => {
-                            if (!state.events.includes(element)){
-                                state.events.push(element)
+            const id = localStorage.getItem("user_id");
+            if (Object.keys(state.events).length === 0  || state.events[date] === undefined){
+                    const url = 'events/' + id + '/';
+                    FETCH_API_GET(url + date).then(events => {
+                        if ('error' in events) {
+                            throw new Error(events['error']);
+                        }
+                        if (Object.keys(state.events).length === 0){
+                            for (date in events){
+                                state.events[date] = events[date]
                             }
-                        });
-                    }
-                })
-            }
+                        }
+                        else{
+                            for (date in events){
+                                if (!(date in Object.keys(state.events))){
+                                    state.events[date] = events[date]
+                                }
+                            }
+                        }
+                        state.events = JSON.parse(JSON.stringify(state.events))
+                    })
+                }
         },
         UPDATE_EVENTS: (state, {date, event}) => {
             const url = 'events/' + event['id']
@@ -46,8 +49,8 @@ export default {
         }
     },
     getters: {
-        getEvents: (state, date) => {
-            return this.state.events[date]
+        getEvents: (state) => {
+            return state.events
         }
     },
 }
